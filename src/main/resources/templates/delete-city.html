@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="text-align: center">
+    <div style="display: inline-block">
+        <form th:action="@{/delete/city/__${city.id}__}" method="post" th:object="${city}">
+            <h3>Bạn có chắc chắn muốn xóa <span th:text="${city.name}"></span> khỏi danh sách</h3>
+            <br>
+            <button>Xóa</button> | <button formaction="/">Quay về danh sách</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List City</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div style="text-align: center">
+    <div style="display: inline-block">
+        <h2>Danh sách các thành phố hiện có</h2>
+        <br>
+        <h3><a href="/create-new-city">Thêm Mới Thành Phố</a></h3>
+        <div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Thành Phố</th>
+                    <th scope="col">Quốc Gia</th>
+                    <th scope="col" colspan="2"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="city,cityStat : ${cities}">
+                    <tr>
+                        <th scope="row" th:text="${cityStat.count}"></th>
+                        <td><a th:href="@{/city/__${city.id}__}" th:text="${city.name}"></a></td>
+                        <td th:text="${city.country.name}"></td>
+                        <td><a th:href="@{/edit/city/__${city.id}__}">Chỉnh sửa</a></td>
+                        <td><a th:href="@{/delete/city/__${city.id}__}">Xóa</a></td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

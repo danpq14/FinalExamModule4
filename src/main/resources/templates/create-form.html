@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm mới thành phố</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div style="text-align: center">
+    <div style="display: inline-block">
+        <h2>Thêm mới thành phố</h2>
+        <br>
+        <h3>Điền đầy đủ các thông tin sau</h3>
+        <div>
+            <form action="/create-new-city" method="post" th:object="${city}">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Tên thành phố</label>
+                        <input type="text" class="form-control"  name="name" placeholder="Ví dụ: New York ...">
+                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Tên thành phố ko hợp lệ</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Diện tích(km2)</label>
+                    <input type="text" class="form-control" name="area" placeholder="Ví dụ: 1000">
+                    <p th:if="${#fields.hasErrors('area')}" th:errors="*{area}">Diện tích ko hợp lệ</p>
+
+                </div>
+                <div class="form-group">
+                    <label>Dân số</label>
+                    <input type="text" class="form-control" name="population" placeholder="Ví dụ: 80000000">
+                    <p th:if="${#fields.hasErrors('population')}" th:errors="*{population}">Dân số ko hợp lệ</p>
+
+                </div>
+                <div class="form-group">
+                    <label >GDP(tỉ USD)</label>
+                    <input type="text" class="form-control" name="gdp" placeholder="Ví dụ: 40">
+                    <p th:if="${#fields.hasErrors('gdp')}" th:errors="*{gdp}">GDP ko hợp lệ</p>
+                </div>
+                <div class="form-row">
+
+                    <div class="form-group col-md-4">
+                        <label >Quốc gia</label>
+                        <select name="country_id" class="form-control">
+                            <option th:each="country : ${countries}" th:value="${country.id}" th:text="${country.name}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Mô tả</label>
+                    <textarea name="description" class="form-control" cols="30" rows="10"></textarea>
+                    <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Mô tả ko hợp lệ</p>
+
+                </div>
+                <button type="submit" class="btn btn-primary">Thêm</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
